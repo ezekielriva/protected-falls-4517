@@ -1,0 +1,2 @@
+module AnsweredQuestionnairesHelper
+end

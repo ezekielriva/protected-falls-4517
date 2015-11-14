@@ -1,0 +1,27 @@
+<p>
+  <strong>Cuestionado:</strong>
+  <%= @answered_questionnaire.questioned %>
+</p>
+
+<p>
+  <strong>Perfil del Cuestionado:</strong>
+  <%= @answered_questionnaire.profile %>
+</p>
+
+<p>
+  <strong>Conclusiones:</strong>
+  <%= @answered_questionnaire.conclusions %>
+</p>
+
+<% @answered_questionnaire.answers.each_with_index do |answer, index| %>
+  <p>
+    <strong>
+      <%= index + 1 %>.
+      <%= answer.question.text %>
+    </strong> <br>
+    <%= answer.value %>
+  </p>
+<% end %>
+
+<%= link_to 'Edit', edit_questionnaire_answered_path(@questionnaire, @answered_questionnaire) %> |
+<%= link_to 'Back', questionnaire_answered_index_path(@questionnaire) %>

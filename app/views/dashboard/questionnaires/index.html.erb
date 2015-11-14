@@ -1,0 +1,30 @@
+<h1>Questionnaires#index</h1>
+
+<%= link_to "Nuevo cuestionario", new_questionnaire_path %>
+
+<table>
+  <thead>
+    <td>Nombre</td>
+    <td>Respuestas</td>
+    <td>Creador</td>
+    <td>Fecha de Cierre</td>
+    <td>Fecha de Creación</td>
+    <td>Actions</td>
+  </thead>
+  <tbody>
+    <% @questionnaires.each do |questionnaire| %>
+      <tr>
+        <td><%= questionnaire.name %></td>
+        <td>##</td>
+        <td><%= questionnaire.user %></td>
+        <td><%= questionnaire.close_at %></td>
+        <td><%= questionnaire.created_at %></td>
+        <td>
+          <%= link_to "Mostar", [questionnaire] %>
+          <%= link_to "Editar", [:edit, questionnaire] %>
+          <%= link_to "Eliminar", [questionnaire], method: :delete, confirm: "¿Está usted seguro?" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

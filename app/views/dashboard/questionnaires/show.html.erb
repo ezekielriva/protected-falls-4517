@@ -1,0 +1,11 @@
+<h1>Cuestionario <%= @questionnaire.name %></h1>
+
+<%= link_to "Responder", new_questionnaire_answered_path(@questionnaire) %>
+
+<ol>
+  <% @questionnaire.questions.each do |question| %>
+    <li><%= question.text %></li>
+  <% end %>
+</ol>
+
+<%= link_to "Volver", [:questionnaires] %>

@@ -1,0 +1,41 @@
+<%= form_for @answered_questionnaire, url: creation_path do |f| %>
+  <% if @answered_questionnaire.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@answered_questionnaire.errors.count, "error") %> prohibited this answered_questionnaire from being saved:</h2>
+
+      <ul>
+      <% @answered_questionnaire.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :questioned, "Cuestionado" %><br>
+    <%= f.text_field :questioned %>
+  </div>
+  <div class="field">
+    <%= f.label :profile, "Perfil del Cuestionado" %><br>
+    <%= f.text_field :profile %>
+  </div>
+  <div class="field">
+    <%= f.label :conclusions, "Conclusiones" %><br>
+    <%= f.text_area :conclusions %>
+  </div>
+
+  <% @answered_questionnaire.answers.each do |answer| %>
+    <div class="field">
+      <%= f.fields_for :answers, answer do |af| %>
+        <%= af.hidden_field :question_id %>
+        <%= af.index + 1 %>
+        <%= af.label answer.question.text %> <br>
+        <%= af.text_field :value %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit "Enviar" %>
+  </div>
+<% end %>

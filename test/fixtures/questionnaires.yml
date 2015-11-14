@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  state: 1
+  close_at: 2015-11-14 14:14:43
+  user_id: 
+
+two:
+  name: MyString
+  state: 1
+  close_at: 2015-11-14 14:14:43
+  user_id: 

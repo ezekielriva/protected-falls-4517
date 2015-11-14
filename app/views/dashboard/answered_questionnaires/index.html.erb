@@ -1,0 +1,22 @@
+<h1>Respuestas al Cuestionarios <%= @questionnaire.name %></h1>
+
+<%= link_to 'New Answered questionnaire', new_questionnaire_answered_path(@questionnaire) %>
+<table>
+  <thead>
+    <tr>
+      <th>Cuestionado</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @answered_questionnaires.each do |answered_questionnaire| %>
+      <tr>
+        <td><%= answered_questionnaire.questioned %></td>
+        <td><%= link_to 'Show', questionnaire_answered_path(@questionnaire, answered_questionnaire) %></td>
+        <td><%= link_to 'Edit', edit_questionnaire_answered_path(@questionnaire, answered_questionnaire) %></td>
+        <td><%= link_to 'Destroy', questionnaire_answered_path(@questionnaire, answered_questionnaire), method: :delete, data: { confirm: '¿Está usted seguro?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

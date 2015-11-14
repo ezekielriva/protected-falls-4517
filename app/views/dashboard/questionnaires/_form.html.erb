@@ -1,0 +1,27 @@
+<%= form_for questionnaire do |f| %>
+  <div class="errors">
+    <% questionnaire.errors.full_messages.each do |error| %>
+      <%= error.inspect %>
+    <% end %>
+  </div>
+  <h1>Creador del Cuestionario: <small><%= current_user %></small></h1>
+
+  <%= f.label :name, "Nombre del Cuestionario" %>
+  <%= f.text_field :name %>
+
+  <%= f.label :close_at, "Fecha de Cierre" %>
+  <%= f.date_field :close_at %>
+
+  <h3>Lista de Preguntas</h3>
+  <div id="questions">
+    <%= f.fields_for :questions do |question| %>
+      <%= render 'question_fields', f: question %>
+    <% end %>
+    <div class="links">
+      <%= link_to_add_association 'Agregar Pregunta', f, :questions %>
+    </div>
+  </div>
+
+  <%= f.submit %>
+  <%= link_to "Volver", :back %>
+<% end %>
