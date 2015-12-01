@@ -30,7 +30,14 @@
         <%= af.hidden_field :question_id %>
         <%= af.index + 1 %>
         <%= af.label answer.question.text %> <br>
-        <%= af.text_field :value %>
+        <%= f.label :value do %>
+          <%= af.radio_button :value, "Si" %>
+          Si
+        <% end %>
+        <%= f.label :value do %>
+          <%= af.radio_button :value, "No" %>
+          No
+        <% end %>
       <% end %>
     </div>
   <% end %>
