@@ -13,4 +13,6 @@
 class Answer < ActiveRecord::Base
   belongs_to :answered_questionnaires
   belongs_to :question
+
+  validates :value, presence: true
 end

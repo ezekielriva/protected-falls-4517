@@ -15,5 +15,7 @@ class AnsweredQuestionnaire < ActiveRecord::Base
   belongs_to :questionnaire
   has_many :answers
 
+  validates :questioned, presence: true
+
   accepts_nested_attributes_for :answers
 end
