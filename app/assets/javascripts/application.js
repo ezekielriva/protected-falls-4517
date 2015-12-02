@@ -1,5 +1,12 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require agency/bootstrap.min
+//= require agency/jquery.easing.min
+//= require agency/classie
+//= require agency/cbpAnimatedHeader
+//= require agency/jqBootstrapValidation
+//= require agency/contact_me
+//= require agency/agency
 //= require cocoon
 //= require_tree .
