@@ -1,11 +1,23 @@
-<h1>Cuestionario <%= @questionnaire.name %></h1>
+<nav class="navbar navbar-default options">
+  <ul class="nav nav-pills">
+    <li role="presentation">
+      <%= link_to new_questionnaire_answered_path(@questionnaire) do %>
+        <i class="fa fa-check-square-o"></i>
+        Responder
+      <% end %>
+    </li>
+  </ul>
+</nav>
 
-<%= link_to "Responder", new_questionnaire_answered_path(@questionnaire) %>
-
-<ol>
-  <% @questionnaire.questions.each do |question| %>
-    <li><%= question.text %></li>
-  <% end %>
-</ol>
-
-<%= link_to "Volver", [:questionnaires] %>
+<div class="box box-default">
+  <div class="box-header">
+    <h3 class="box-title">Preguntas</h3>
+  </div>
+  <div class="box-body">
+    <ol>
+      <% @questionnaire.questions.each do |question| %>
+        <li>¿<%= question.text %>?</li>
+      <% end %>
+    </ol>
+  </div>
+</div>

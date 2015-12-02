@@ -1,27 +1,38 @@
-<%= form_for questionnaire do |f| %>
-  <div class="errors">
-    <% questionnaire.errors.full_messages.each do |error| %>
-      <%= error.inspect %>
-    <% end %>
-  </div>
-  <h1>Creador del Cuestionario: <small><%= current_user %></small></h1>
+<%= form_for questionnaire, html: {class: "form-horizontal"} do |f| %>
+  <div class="box-body">
+    <div class="errors">
+      <% questionnaire.errors.full_messages.each do |error| %>
+        <%= error.inspect %>
+      <% end %>
+    </div>
 
-  <%= f.label :name, "Nombre del Cuestionario" %>
-  <%= f.text_field :name %>
+    <legend>Detalle</legend>
+    <div class="form-group">
+      <%= f.label :name, "Nombre", class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= f.text_field :name, class: "form-control", placeholder: "Nombre del Cuestionario" %>
+      </div>
+    </div>
 
-  <%= f.label :close_at, "Fecha de Cierre" %>
-  <%= f.date_field :close_at %>
+    <div class="form-group">
+      <%= f.label :close_at, "Fecha de Cierre", class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= f.date_field :close_at, class: "form-control" %>
+      </div>
+    </div>
 
-  <h3>Lista de Preguntas</h3>
-  <div id="questions">
-    <%= f.fields_for :questions do |question| %>
-      <%= render 'question_fields', f: question %>
-    <% end %>
-    <div class="links">
-      <%= link_to_add_association 'Agregar Pregunta', f, :questions %>
+    <legend>Lista de Preguntas</legend>
+    <div id="questions">
+      <%= f.fields_for :questions do |question| %>
+        <%= render 'question_fields', f: question %>
+      <% end %>
+      <div class="links">
+        <%= link_to_add_association 'Agregar Pregunta', f, :questions, class: "btn btn-default pull-right" %>
+      </div>
     </div>
   </div>
-
-  <%= f.submit %>
-  <%= link_to "Volver", :back %>
+  <div class="box-footer">
+    <%= f.submit class: "btn btn-info pull-right" %>
+    <%= link_to "Volver", :back, class: "btn btn-default" %>
+  </div>
 <% end %>

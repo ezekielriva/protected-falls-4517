@@ -1,5 +1,5 @@
 module Dashboard
-  class AnsweredQuestionnairesController < ApplicationController
+  class AnsweredQuestionnairesController < DashboardController
     before_action :set_questionnaire
     before_action :set_answered_questionnaire, only: [:show, :edit, :update, :destroy]
 

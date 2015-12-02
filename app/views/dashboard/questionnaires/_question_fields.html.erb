@@ -1,5 +1,16 @@
-<div class="nested-fields">
-  <%= f.label :text, "Pregunta" %>
-  <%= f.text_field :text %>
-  <%= link_to_remove_association "Eliminar Pregunta", f %>
+<div class="nested-fields form-group">
+  <%= f.label :text, "Pregunta", class: "col-sm-2 control-label" %>
+  <div class="col-sm-10">
+    <div class="input-group">
+      <%= f.text_field :text, class: "form-control" %>
+      <span class="input-group-addon">
+        <i class="fa fa-question"></i>
+      </span>
+      <span class="input-group-addon btn btn-danger">
+        <%= link_to_remove_association f do %>
+          <i class="fa fa-trash"></i>
+        <% end %>
+      </span>
+    </div>
+  </div>
 </div>

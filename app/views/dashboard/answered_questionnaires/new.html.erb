@@ -1,5 +1,3 @@
-<h1>Nuevo Respuesta para el Cuestionario <%= @questionnaire.name %></h1>
-
-<%= render 'form', creation_path: questionnaire_answered_index_path() %>
-
-<%= link_to 'Back', :back %>
+<div class="box box-default">
+  <%= render 'form', creation_path: questionnaire_answered_index_path() %>
+</div>

@@ -1,4 +1,18 @@
 /*
+ *= require bootstrap
+ *= require font-awesome
+ *= require ionicons.min
  *= require admin/AdminLTE.min
+ *= require admin/skins/_all-skins.min
+ *= require admin/iCheck/flat/blue
+ *= require admin/morris/morris
+ *= require admin/jvectormap/jquery-jvectormap-1.2.2
+ *= require admin/datepicker/datepicker3
+ *= require admin/daterangepicker/daterangepicker-bs3
+ *= require admin/bootstrap-wysihtml5/bootstrap3-wysihtml5.min
  *= require_self
  */
+
+.navbar.options .nav-pills {
+  background: white;
+}

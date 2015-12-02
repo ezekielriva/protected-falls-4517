@@ -5,6 +5,10 @@ Rails.application.routes.draw do
     resources :questionnaires, path: "cuestionarios" do
       resources :answered_questionnaires, path: "respuestas", as: :answered
     end
+
+    resources :users, path: "usuarios" do
+      resources :questionnaires, path: "cuestionarios", controller: "users/questionnaires"
+    end
   end
   devise_for :users
   root to: "home#index"

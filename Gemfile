@@ -12,6 +12,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 gem 'cocoon'
 gem 'annotate'
+gem 'draper'
 
 group :development, :test do
   gem 'byebug'

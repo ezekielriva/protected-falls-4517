@@ -8,5 +8,4 @@
 //= require agency/jqBootstrapValidation
 //= require agency/contact_me
 //= require agency/agency
-//= require cocoon
 //= require_tree .

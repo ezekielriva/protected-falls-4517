@@ -1,0 +1,48 @@
+<nav class="navbar navbar-default options">
+  <ul class="nav nav-pills">
+    <li role="presentation">
+      <%= link_to new_questionnaire_path do %>
+        <i class="fa fa-file"></i>
+        Nuevo Cuestionario
+      <% end %>
+    </li>
+  </ul>
+</nav>
+
+<div class="panel panel-default">
+  <table class="table">
+    <thead>
+      <td>Nombre</td>
+      <td>No. Respuestas</td>
+      <td>Creador</td>
+      <td>Fecha de Cierre</td>
+      <td>Fecha de Creación</td>
+      <td>Acciones</td>
+    </thead>
+    <tbody>
+      <% @questionnaires.decorate.each do |questionnaire| %>
+        <tr>
+          <td><%= questionnaire.name %></td>
+          <td><%= questionnaire.answered_questionnaires_count %></td>
+          <td><%= questionnaire.user %></td>
+          <td><%= questionnaire.close_at %></td>
+          <td><%= questionnaire.created_at %></td>
+          <td>
+            <div class="btn-group" role="group" aria-label="...">
+              <%= link_to [questionnaire], class: "btn btn-link" do %>
+                <i class="fa fa-eye"></i>
+              <% end %>
+              <%= link_to [:edit, questionnaire], class: "btn btn-link" do %>
+                <i class="fa fa-edit"></i>
+              <% end %>
+              <%= link_to [questionnaire], method: :delete, confirm: "¿Está usted seguro?", class: "btn btn-danger" do %>
+                <i class="fa fa-trash"></i>
+              <% end %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</div>

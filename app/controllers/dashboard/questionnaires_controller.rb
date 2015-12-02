@@ -1,6 +1,6 @@
 module Dashboard
   class QuestionnairesController < DashboardController
-    before_filter :set_questionnaire, except: [:index, :new, :create]
+    before_action :set_questionnaire, except: [:index, :new, :create]
 
     def index
       @questionnaires = Questionnaire.all
@@ -14,7 +14,7 @@ module Dashboard
     def create
       @questionnaire = current_user.questionnaires.new(questionnaire_params)
       if @questionnaire.save
-        return redirect_to [:dashboard, @questionnaire],
+        return redirect_to @questionnaire,
                            notice: "Se ha creado el Cuestionario exitosamente."
       end
 
@@ -39,6 +39,11 @@ module Dashboard
                   notice: "El Cuestionario #{@questionnaire.name} ha sido elimnado completamente incluyendo sus Preguntas"
     end
 
+    protected
+
+    def set_title
+      @title = "Mis Cuestionarios"
+    end
 
     private
 
@@ -49,6 +54,7 @@ module Dashboard
 
     def set_questionnaire
       @questionnaire = Questionnaire.includes(:questions).find(params[:id])
+      @title         = @questionnaire.decorate.title
     end
   end
 end

@@ -1,48 +1,63 @@
-<%= form_for @answered_questionnaire, url: creation_path do |f| %>
-  <% if @answered_questionnaire.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@answered_questionnaire.errors.count, "error") %> prohibited this answered_questionnaire from being saved:</h2>
+<%= form_for @answered_questionnaire, url: creation_path, html: {class: "form-horizontal"} do |f| %>
+  <div class="box-body">
+    <% if @answered_questionnaire.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@answered_questionnaire.errors.count, "error") %> prohibited this answered_questionnaire from being saved:</h2>
 
-      <ul>
-      <% @answered_questionnaire.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :questioned, "Cuestionado" %><br>
-    <%= f.text_field :questioned %>
-  </div>
-  <div class="field">
-    <%= f.label :profile, "Perfil del Cuestionado" %><br>
-    <%= f.text_field :profile %>
-  </div>
-  <div class="field">
-    <%= f.label :conclusions, "Conclusiones" %><br>
-    <%= f.text_area :conclusions %>
-  </div>
-
-  <% @answered_questionnaire.answers.each do |answer| %>
-    <div class="field">
-      <%= f.fields_for :answers, answer do |af| %>
-        <%= af.hidden_field :question_id %>
-        <%= af.index + 1 %>
-        <%= af.label answer.question.text %> <br>
-        <%= f.label :value do %>
-          <%= af.radio_button :value, "Si" %>
-          Si
+        <ul>
+        <% @answered_questionnaire.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
         <% end %>
-        <%= f.label :value do %>
-          <%= af.radio_button :value, "No" %>
-          No
-        <% end %>
-      <% end %>
-    </div>
-  <% end %>
+        </ul>
+      </div>
+    <% end %>
 
-  <div class="actions">
-    <%= f.submit "Enviar" %>
+    <legend>Detalle</legend>
+
+    <div class="form-group">
+      <%= f.label :questioned, "Cuestionado", class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= f.text_field :questioned, class: "form-control" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :profile, "Perfil del Cuestionado", class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= f.text_field :profile, class: "form-control" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :conclusions, "Conclusiones", class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= f.text_area :conclusions, class: "form-control" %>
+      </div>
+    </div>
+
+    <legend>Respuestas</legend>
+
+    <% @answered_questionnaire.answers.each do |answer| %>
+      <div class="form-group">
+        <%= f.fields_for :answers, answer do |af| %>
+          <%= af.hidden_field :question_id %>
+          <%= af.label :question, class: "col-sm-12" do %>
+            <%= af.index + 1 %>.
+            ¿<%= answer.question.text %>?
+          <% end %>
+
+          <%= f.label :value, class: "col-md-offset-1 col-sm-1" do %>
+            <%= af.radio_button :value, "Si" %> Si
+          <% end %>
+          <%= f.label :value, class: "col-sm-1" do %>
+            <%= af.radio_button :value, "No" %> No
+          <% end %>
+
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="box-footer">
+    <%= f.submit "Enviar", class: "btn btn-primary pull-right" %>
+    <%= link_to "Volver", :back, class: "btn btn-default" %>
   </div>
 <% end %>
