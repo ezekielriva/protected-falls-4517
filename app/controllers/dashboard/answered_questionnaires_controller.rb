@@ -2,6 +2,8 @@ module Dashboard
   class AnsweredQuestionnairesController < DashboardController
     before_action :set_questionnaire
     before_action :set_answered_questionnaire, only: [:show, :edit, :update, :destroy]
+    before_action :set_title
+    before_action :set_subtitle, only: [:show, :edit, :update, :destroy]
 
     def index
       @answered_questionnaires = AnsweredQuestionnaire.all
@@ -62,6 +64,14 @@ module Dashboard
 
     def set_answered_questionnaire
       @answered_questionnaire = @questionnaire.answered_questionnaires.find(params[:id])
+    end
+
+    def set_title
+      @title = @questionnaire.decorate.title
+    end
+
+    def set_subtitle
+      @subtitle = "Respuestas"
     end
 
     def answered_questionnaire_params

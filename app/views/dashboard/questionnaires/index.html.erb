@@ -13,6 +13,7 @@
   <table class="table">
     <thead>
       <td>Nombre</td>
+      <td>No. Preguntas</td>
       <td>No. Respuestas</td>
       <td>Creador</td>
       <td>Fecha de Cierre</td>
@@ -23,6 +24,7 @@
       <% @questionnaires.decorate.each do |questionnaire| %>
         <tr>
           <td><%= questionnaire.name %></td>
+          <td><%= questionnaire.questions_count %></td>
           <td><%= questionnaire.answered_questionnaires_count %></td>
           <td><%= questionnaire.user %></td>
           <td><%= questionnaire.close_at %></td>

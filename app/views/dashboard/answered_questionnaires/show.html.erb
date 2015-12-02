@@ -1,27 +1,45 @@
-<p>
-  <strong>Cuestionado:</strong>
-  <%= @answered_questionnaire.questioned %>
-</p>
+<nav class="navbar navbar-default options">
+  <ul class="nav nav-pills">
+    <li role="presentation">
+      <%= link_to edit_questionnaire_answered_path(@questionnaire, @answered_questionnaire) do %>
+        <i class="fa fa-edit"></i>
+        Editar
+      <% end %>
+    </li>
+    <li role="presentation">
+      <%= link_to questionnaire_answered_path, method: :delete, confirm: "¿Está usted seguro?" do %>
+        <i class="fa fa-trash"></i>
+        Eliminar
+      <% end %>
+    </li>
+  </ul>
+</nav>
 
-<p>
-  <strong>Perfil del Cuestionado:</strong>
-  <%= @answered_questionnaire.profile %>
-</p>
+<div class="box box-primary">
+  <div class="box-header">
+    <h3 class="box-title">Detalle</h3>
+  </div>
+  <div class="box-body">
+    <dl class="dl-horizontal">
+      <dt>Cuestionado:</dt>
+      <dd><%= @answered_questionnaire.questioned %></dd>
+      <dt>Perfil del Cuestionado:</dt>
+      <dd><%= @answered_questionnaire.profile %></dd>
+      <dt>Conclusiones:</dt>
+      <dd><%= @answered_questionnaire.conclusions %></dd>
+    </dl>
+  </div>
+</div>
 
-<p>
-  <strong>Conclusiones:</strong>
-  <%= @answered_questionnaire.conclusions %>
-</p>
-
-<% @answered_questionnaire.answers.each_with_index do |answer, index| %>
-  <p>
-    <strong>
-      <%= index + 1 %>.
-      <%= answer.question.text %>
-    </strong> <br>
-    <%= answer.value %>
-  </p>
-<% end %>
-
-<%= link_to 'Edit', edit_questionnaire_answered_path(@questionnaire, @answered_questionnaire) %> |
-<%= link_to 'Back', questionnaire_answered_index_path(@questionnaire) %>
+<div class="box box-default">
+  <div class="box-header">
+    <h3 class="box-title">Respuestas</h3>
+  </div>
+  <div class="box-body">
+    <ol>
+      <% @answered_questionnaire.answers.each_with_index do |answer, index| %>
+        <li><%= answer.question.text %> <br> <strong><%= answer.value %></strong></li>
+      <% end %>
+    </ol>
+  </div>
+</div>

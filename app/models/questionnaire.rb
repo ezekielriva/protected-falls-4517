@@ -22,5 +22,6 @@ class Questionnaire < ActiveRecord::Base
                                             reject_if: :all_blank
 
   delegate :count, to: :answered_questionnaires, prefix: true
+  delegate :count, to: :questions, prefix: true
 
 end
