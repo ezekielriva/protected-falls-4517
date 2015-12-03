@@ -11,6 +11,11 @@
 
 class Question < ActiveRecord::Base
   belongs_to :questionnaire
+  has_many :answers
 
   validates :text, presence: true
+
+  def count_answers_with(value)
+    answers.where(value: value).count
+  end
 end

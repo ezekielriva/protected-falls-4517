@@ -16,8 +16,19 @@
   <div class="box-body">
     <ol>
       <% @questionnaire.questions.each do |question| %>
-        <li>¿<%= question.text %>?</li>
+        <li class="question" data-yes="<%= question.count_answers_with('Si') %>" data-no="<%= question.count_answers_with('No') %>">¿<%= question.text %>?</li>
       <% end %>
     </ol>
+  </div>
+</div>
+
+<div class="box box-success">
+  <div class="box-header">
+    <h3 class="box-title">Respuestas</h3>
+  </div>
+  <div class="box-body">
+    <div class="chart">
+      <canvas id="bar-chart-answer"></canvas>
+    </div>
   </div>
 </div>
