@@ -71,7 +71,14 @@
                         <a class="page-scroll" href="#contact">Contactenos</a>
                     </li>
                     <li>
-                      <%= link_to "Ingresar", new_user_session_path, class: "page-scroll" %>
+                      <% if current_user %>
+                        <%= link_to dashboard_path, class: "page-scroll" do %>
+                          Admin
+                          <i class="fa fa-lock"></i>
+                        <% end %>
+                      <% else %>
+                        <%= link_to "Ingresar", new_user_session_path, class: "page-scroll" %>
+                      <% end %>
                     </li>
                 </ul>
             </div>

@@ -15,6 +15,7 @@
 #  last_sign_in_ip        :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  full_name              :string
 #
 
 class User < ActiveRecord::Base
@@ -22,4 +23,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :questionnaires
+
+  validates :full_name, presence: true
 end
