@@ -1,0 +1,20 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username: postgres
+  password: root
+
+development:
+  <<: *default
+  database: recursos_development
+
+staging:
+  <<: *default
+  database: recursos_staging
+
+test:
+  <<: *default
+  database: recursos_test
+  pool: 5
+

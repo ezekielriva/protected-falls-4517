@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20151203002321) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "answered_questionnaires", force: :cascade do |t|
     t.string   "questioned"
     t.string   "profile"
@@ -22,7 +25,7 @@ ActiveRecord::Schema.define(version: 20151203002321) do
     t.integer  "questionnaire_id"
   end
 
-  add_index "answered_questionnaires", ["questionnaire_id"], name: "index_answered_questionnaires_on_questionnaire_id"
+  add_index "answered_questionnaires", ["questionnaire_id"], name: "index_answered_questionnaires_on_questionnaire_id", using: :btree
 
   create_table "answers", force: :cascade do |t|
     t.integer  "question_id"
@@ -32,8 +35,8 @@ ActiveRecord::Schema.define(version: 20151203002321) do
     t.datetime "updated_at",                null: false
   end
 
-  add_index "answers", ["answered_questionnaire_id"], name: "index_answers_on_answered_questionnaire_id"
-  add_index "answers", ["question_id"], name: "index_answers_on_question_id"
+  add_index "answers", ["answered_questionnaire_id"], name: "index_answers_on_answered_questionnaire_id", using: :btree
+  add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
 
   create_table "questionnaires", force: :cascade do |t|
     t.string   "name"
@@ -44,7 +47,7 @@ ActiveRecord::Schema.define(version: 20151203002321) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "questionnaires", ["user_id"], name: "index_questionnaires_on_user_id"
+  add_index "questionnaires", ["user_id"], name: "index_questionnaires_on_user_id", using: :btree
 
   create_table "questions", force: :cascade do |t|
     t.string   "text"
@@ -53,7 +56,7 @@ ActiveRecord::Schema.define(version: 20151203002321) do
     t.integer  "questionnaire_id"
   end
 
-  add_index "questions", ["questionnaire_id"], name: "index_questions_on_questionnaire_id"
+  add_index "questions", ["questionnaire_id"], name: "index_questions_on_questionnaire_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -71,7 +74,12 @@ ActiveRecord::Schema.define(version: 20151203002321) do
     t.string   "full_name"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "answered_questionnaires", "questionnaires"
+  add_foreign_key "answers", "answered_questionnaires"
+  add_foreign_key "answers", "questions"
+  add_foreign_key "questionnaires", "users"
+  add_foreign_key "questions", "questionnaires"
 end

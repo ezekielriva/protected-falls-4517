@@ -16,6 +16,6 @@ class QuestionnaireDecorator < Draper::Decorator
   end
 
   def close_at
-    object.close_at.strftime("%d.%m.%Y")
+    object.close_at.present? ? object.close_at.strftime("%d.%m.%Y") : "-"
   end
 end
